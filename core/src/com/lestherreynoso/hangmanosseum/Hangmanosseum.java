@@ -14,8 +14,8 @@ public class Hangmanosseum extends ApplicationAdapter {
     public static final int SCREEN_HEIGHT = 600;
     public static final int MAIN_PEDISTAL_HEIGHT = 150;
     public static final int MAIN_PEDISTAL_WIDTH = 110;
-    public static final int LETTER_PEDISTAL_WIDTH = 90;
-    public static final int LETTER_PEDISTAL_HEIGHT = 130;
+    public static final int LETTER_PEDISTAL_WIDTH = 70;
+    public static final int LETTER_PEDISTAL_HEIGHT = 110;
     SpriteBatch batch;
     Texture playerTexture, colosseumWallTexture, hangingThingTexture, letterPedistalTexture, mainPedistalTexture, playerTexture2;
     OrthographicCamera cam;
@@ -27,7 +27,7 @@ public class Hangmanosseum extends ApplicationAdapter {
     private Sprite PlayerPedistal;
     private Sprite EnemyPedistal;
     private Sprite LetterPedistal;
-
+    private WordManager wordManager;
 
 
     @Override
@@ -61,7 +61,11 @@ public class Hangmanosseum extends ApplicationAdapter {
         EnemyPedistal.setPosition(SCREEN_WIDTH - EnemyPedistal.getWidth(), 0);
         LetterPedistal = new Sprite(letterPedistalTexture);
         LetterPedistal.setSize(LETTER_PEDISTAL_WIDTH, LETTER_PEDISTAL_HEIGHT);
+        wordManager = new WordManager();
+
     }
+
+
 
     @Override
     public void render () {
@@ -77,6 +81,10 @@ public class Hangmanosseum extends ApplicationAdapter {
 //		batch.draw(playerSprite.getTexture(), playerSprite.getX(), playerSprite.getY());
 //        player.draw(batch);
         playerAnimated.draw(batch);
+
+
+        wordManager.drawWordPedistals(batch);
+
         PlayerPedistal.draw(batch);
         EnemyPedistal.draw(batch);
 
