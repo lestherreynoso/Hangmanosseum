@@ -1,0 +1,192 @@
+
+letterTextures.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+a
+  rotate: false
+  xy: 0, 750
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+c
+  rotate: false
+  xy: 0, 500
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+d
+  rotate: false
+  xy: 250, 750
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+e
+  rotate: false
+  xy: 0, 250
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+f
+  rotate: false
+  xy: 250, 500
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+g
+  rotate: false
+  xy: 500, 750
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+h
+  rotate: false
+  xy: 0, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+i
+  rotate: false
+  xy: 250, 250
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+j
+  rotate: false
+  xy: 500, 500
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+k
+  rotate: false
+  xy: 750, 750
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+l
+  rotate: false
+  xy: 250, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+m
+  rotate: false
+  xy: 500, 250
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+n
+  rotate: false
+  xy: 750, 500
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+o
+  rotate: false
+  xy: 500, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+p
+  rotate: false
+  xy: 750, 250
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+q
+  rotate: false
+  xy: 750, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+
+letterTextures2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+r
+  rotate: false
+  xy: 0, 500
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+s
+  rotate: false
+  xy: 0, 250
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+t
+  rotate: false
+  xy: 250, 500
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+u
+  rotate: false
+  xy: 0, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+v
+  rotate: false
+  xy: 250, 250
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+w
+  rotate: false
+  xy: 500, 500
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+x
+  rotate: false
+  xy: 250, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+y
+  rotate: false
+  xy: 500, 250
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+z
+  rotate: false
+  xy: 500, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+b
+  rotate: false
+  xy: 750, 501
+  size: 148, 249
+  orig: 148, 249
+  offset: 0, 0
+  index: -1
