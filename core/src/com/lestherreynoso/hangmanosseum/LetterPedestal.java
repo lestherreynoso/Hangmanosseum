@@ -1,8 +1,16 @@
 package com.lestherreynoso.hangmanosseum;
 
+import aurelienribon.tweenengine.BaseTween;
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenCallback;
+import aurelienribon.tweenengine.TweenManager;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.lestherreynoso.accessors.SpriteAccessor;
 
 /**
  * Created by Kpable on 3/24/2015.
@@ -10,10 +18,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class LetterPedestal extends Sprite {
     private String letterValue;
     private Sprite correctLetter;
+    private boolean risen;
+    private TweenManager tweenManager;
 
-    public LetterPedestal(Sprite letterPedistal, String letterValue){
-        this.set(letterPedistal);
+
+    public LetterPedestal(Sprite letterPedestal, String letterValue){
+        this.set(letterPedestal);
         this.letterValue = letterValue;
+        this.risen = false;
+
+        tweenManager = new TweenManager();
+        Tween.registerAccessor(Sprite.class, new SpriteAccessor());
     }
 
     public String getLetterValue() {
@@ -26,6 +41,7 @@ public class LetterPedestal extends Sprite {
         Gdx.app.log("LetterPedestal", "rising");
         correctLetter = new Sprite(carryingLetter);
         correctLetter.setPosition(getX()+ correctLetter.getWidth() / 2, getHeight() + 5);
+        setRisen(true);
 
     }
 
@@ -35,5 +51,23 @@ public class LetterPedestal extends Sprite {
             correctLetter.draw(batch);
         }
         super.draw(batch);
+        if(Gdx.graphics.getDeltaTime() != 0){
+            tweenManager.update(Gdx.graphics.getDeltaTime());
+        }
+    }
+
+    public boolean isRisen() {
+        return risen;
+    }
+
+    public void setRisen(boolean risen) {
+        this.risen = risen;
+    }
+
+    public void loadAnimation() {
+        Tween.set(this, SpriteAccessor.Y).target(0 - this.getHeight()).start(tweenManager);
+        Tween.to(this, SpriteAccessor.Y, 2).target(0)
+                .start(tweenManager);
+        tweenManager.update(Float.MIN_VALUE);
     }
 }

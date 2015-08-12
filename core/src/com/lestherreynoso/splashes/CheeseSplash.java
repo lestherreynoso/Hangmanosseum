@@ -4,6 +4,7 @@ import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,6 +12,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.lestherreynoso.accessors.SpriteAccessor;
+import com.lestherreynoso.hangmanosseum.Colosseum;
+import com.lestherreynoso.screens.Intro;
 
 /**
  * Created by Kpable on 3/21/2015.
@@ -26,15 +29,16 @@ public class CheeseSplash implements Screen {
         tweenManager = new TweenManager();
         Tween.registerAccessor(Sprite.class, new SpriteAccessor());
 
-        Texture splashTexture = new Texture("cheese-logo.jpg");
+        Texture splashTexture = new Texture(Gdx.files.internal("imgs/splash/cheese-logo.png"));
         splash = new Sprite(splashTexture);
-        splash.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//        splash.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        splash.setPosition(Gdx.graphics.getWidth()/2 - splash.getWidth()/2, 0);
 
         Tween.set(splash, SpriteAccessor.ALPHA).target(0).start(tweenManager);
         Tween.to(splash, SpriteAccessor.ALPHA, 2).target(1).repeatYoyo(1,0).setCallback(new TweenCallback() {
             @Override
             public void onEvent(int i, BaseTween<?> baseTween) {
-//                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu());
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Intro());
             }
         }).start(tweenManager);
 

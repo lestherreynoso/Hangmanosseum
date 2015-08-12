@@ -25,6 +25,7 @@ public class Colosseum implements Screen, InputProcessor {
     Random random;
     private float stateTime;
     private WordManager wordManager;
+    private TosserManager tosserManager;
 
     @Override
     public void show() {
@@ -33,6 +34,7 @@ public class Colosseum implements Screen, InputProcessor {
         letterManager = new LetterManager();
         wordManager = new WordManager();    //word is chosen upon creation at the moment
         pedestalManager = new PedestalManager();
+        tosserManager = new TosserManager();
         player = new Player(new Sprite(new Texture(Gdx.files.internal("imgs/game/characters/player-front-running-spritesheet.png"))));
 
         //TODO find a better way to check letter collisions that's not passing the letterManager
@@ -41,6 +43,10 @@ public class Colosseum implements Screen, InputProcessor {
         pedestalManager.spawnDecidingPedestals();
         pedestalManager.spawnPlayerLetterPedestals(wordManager.getChosenPlayerWord());
         pedestalManager.spawnOpponentLetterPedestals(wordManager.getChosenOpponentWord());
+        pedestalManager.animate();
+
+        tosserManager.spawnTossers();
+
 
         Gdx.input.setInputProcessor(this);
         random = new Random();
@@ -55,6 +61,7 @@ public class Colosseum implements Screen, InputProcessor {
         player.draw(batch);
         spawnLetters(batch);
         pedestalManager.drawPedestals(batch);
+        tosserManager.drawTossers(batch);
         batch.end();
 
         collisionManager.handleCollisions();
@@ -69,7 +76,9 @@ public class Colosseum implements Screen, InputProcessor {
             if (stateTime >= 3f) {
                 Letter temp = letterManager.generateRandomLetter();
                 collisionManager.addToCollisionCheck(temp);
-                temp.setPosition(random.nextInt(Hangmanosseum.SCREEN_WIDTH), random.nextInt(Hangmanosseum.SCREEN_HEIGHT));
+                tosserManager.giveLetterToTosser(temp);
+//                temp.setPosition(random.nextInt(Hangmanosseum.SCREEN_WIDTH), random.nextInt(Hangmanosseum.SCREEN_HEIGHT));
+                temp.checkScreenBounds();
                 temp.setSize(30, 30);
                 letterManager.addToFieldLetters(temp);
                 stateTime = 0;

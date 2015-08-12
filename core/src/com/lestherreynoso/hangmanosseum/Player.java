@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by Kpable on 3/22/2015.
  */
-public class Player extends AnimatedSprite{
+public class Player extends AnimatedFieldSprite{
 
     // MOVEMENT BOOLEANS //
     private boolean moving;
@@ -33,7 +33,7 @@ public class Player extends AnimatedSprite{
     public Player(Sprite playerSprite) {
         super(playerSprite, 4, 1, 0.3f);
         this.moving = false;
-        this.movingUp = false;
+//        this.movingUp = false;
 
 
         setPosition(Hangmanosseum.SCREEN_WIDTH/2, 0);
@@ -58,7 +58,8 @@ public class Player extends AnimatedSprite{
 //            this.moving = false;
         }else{
             this.moving = false;
-            batch.draw(getCurrentFrame(), this.getX(), this.getY());
+//            batch.draw(getCurrentFrame(), this.getX(), this.getY());
+            batch.draw(getCurrentSprite(), this.getX(), this.getY(), getCurrentSprite().getWidth(), getCurrentSprite().getHeight());
         }
         if(isCarrying()){
             float lposx = getX() + getSpriteCenterWidthOffset();

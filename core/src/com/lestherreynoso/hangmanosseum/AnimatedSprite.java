@@ -18,17 +18,28 @@ public class AnimatedSprite {
     private final int FrameRow;
 
     private Animation animation;
+//    private ScalableAnimation animation;
     private TextureRegion[] frames;
     private float stateTime;
     private TextureRegion currentFrame;
+    private double scale;
 
 
-    public AnimatedSprite(Sprite playerSprite, int frameCol, int frameRow, float frameDuration ){
-        this.sprite = playerSprite;
+
+    private Sprite currentSprite;
+
+
+    public AnimatedSprite(Sprite animatedSprite, int frameCol, int frameRow, float frameDuration ){
+        this.sprite = animatedSprite;
         this.FrameCol = frameCol;
         this.FrameRow = frameRow;
         this.FrameDuration = frameDuration;
+        this.scale = 1.0;
 
+        createAnimation();
+    }
+
+    private void createAnimation() {
         Texture playerSpriteSheetTexture = this.sprite.getTexture();
         TextureRegion[][] temp = TextureRegion.split(playerSpriteSheetTexture, (int) getSpriteWidth(), playerSpriteSheetTexture.getHeight() / FrameRow);
         frames = new TextureRegion[FrameCol * FrameRow];
@@ -40,6 +51,7 @@ public class AnimatedSprite {
         }
 
         animation = new Animation(FrameDuration, frames);
+//        animation = new ScalableAnimation(FrameDuration, frames);
         stateTime = 0f;
     }
 
@@ -58,9 +70,12 @@ public class AnimatedSprite {
     }
 
     public void draw(Batch batch) {
-
+//        Gdx.app.log("AnimatedSprite", "Drawing");
         stateTime += Gdx.graphics.getDeltaTime();
         currentFrame = animation.getKeyFrame(stateTime, true);
+//
+        currentSprite = new Sprite(animation.getKeyFrame(stateTime, true));
+        currentSprite.setSize(currentSprite.getWidth() * (float)scale, currentSprite.getHeight() * (float)scale);
 
 //        sprite.setRegion(currentFrame);
 //        sprite.setr
@@ -68,7 +83,10 @@ public class AnimatedSprite {
 //        sprite.setRegionWidth((int) sprite.getWidth());
 //        sprite.draw(batch);
 
-        batch.draw(currentFrame, sprite.getX(), sprite.getY());
+//        batch.draw(currentFrame, sprite.getX(), sprite.getY()); //works
+        batch.draw(currentSprite, sprite.getX(), sprite.getY(), 0, 0, currentSprite.getWidth(), currentSprite.getHeight(), 1, 1, 0);
+//        animation.setScaling((float)scale);
+//        animation.draw(stateTime, batch, sprite.getX(), sprite.getY());
     }
 
     public Rectangle getBoundingBox() {
@@ -101,4 +119,20 @@ public class AnimatedSprite {
     public TextureRegion getCurrentFrame() {
         return currentFrame;
     }
+
+    public void setScale(double scale) {
+        this.scale = scale;
+    }
+
+    public Sprite getCurrentSprite() {
+        return currentSprite;
+    }
+//    public Texture getTexture(){
+//        return sprite.getTexture();
+//    }
+//
+//    public void setSprite(Sprite fieldSprite) {
+//        this.sprite.set(fieldSprite);
+//        createAnimation();
+//    }
 }

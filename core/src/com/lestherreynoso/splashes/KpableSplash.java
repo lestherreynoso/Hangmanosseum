@@ -28,15 +28,17 @@ public class KpableSplash implements Screen {
         tweenManager = new TweenManager();
         Tween.registerAccessor(Sprite.class, new SpriteAccessor());
 
-        Texture splashTexture = new Texture("kpable-logo.jpg");
+        Texture splashTexture = new Texture(Gdx.files.internal("imgs/splash/kpable-logo.jpg"));
         splash = new Sprite(splashTexture);
-        splash.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//        splash.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        splash.setSize(splash.getWidth(), Gdx.graphics.getHeight());
+        splash.setPosition(Gdx.graphics.getWidth()/2 - splash.getWidth()/2, 0);
 
         Tween.set(splash, SpriteAccessor.ALPHA).target(0).start(tweenManager);
         Tween.to(splash, SpriteAccessor.ALPHA, 2).target(1).repeatYoyo(1,0).setCallback(new TweenCallback() {
             @Override
             public void onEvent(int i, BaseTween<?> baseTween) {
-//                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu());
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new CheeseSplash());
             }
         }).start(tweenManager);
 
